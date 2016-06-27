@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<EasyWSDL>
+  <Info>
+    <Version>4.5.7.1</Version>
+    <AccountType>Basic</AccountType>
+    <LibrariesFolder>libs/easywsdl</LibrariesFolder>
+    <MainClass>RIVBasicHttpBinding_IMembershipService</MainClass>
+  </Info>
+  <Settings>
+    <Url>http://192.168.112.139/ResturantService/MembershipService.svc?wsdl</Url>
+    <ClassPrefix/>
+    <PackageName>org.bill.android.myapplication.membershipService</PackageName>
+    <AddDocumentation>false</AddDocumentation>
+    <EnableAdvancedFeatures>false</EnableAdvancedFeatures>
+    <EnableMTOM>false</EnableMTOM>
+    <EncodeIllegalCharacters>true</EncodeIllegalCharacters>
+    <GenerateAsyncOperations>true</GenerateAsyncOperations>
+    <ImplementSerializable>false</ImplementSerializable>
+    <AddAnyCollection>false</AddAnyCollection>
+    <UseJodaTime>false</UseJodaTime>
+    <Repackage/>
+    <GenerateHtmlDocumentation>true</GenerateHtmlDocumentation>
+  </Settings>
+  <Files>
+    <File>docs/Html/MTOMTransfer.html</File>
+    <File>docs/Html/RIVBasicHttpBinding_IMembershipService.html</File>
+    <File>docs/Html/RIVBasicHttpBinding_IMembershipService_methods.html</File>
+    <File>docs/Html/Tips.html</File>
+    <File>docs/Index.html</File>
+    <File>docs/Styles/Blueprint_Styles/Style.css</File>
+    <File>RIVAuthenticateUserResult.java</File>
+    <File>RIVBasicHttpBinding_IMembershipService.java</File>
+    <File>RIVExtendedSoapSerializationEnvelope.java</File>
+    <File>RIVFunctions.java</File>
+    <File>RIVHelper.java</File>
+    <File>RIVIServiceEvents.java</File>
+    <File>RIVMarshalGuid.java</File>
+    <File>RIVOperationResult.java</File>
+    <File>RIVRequestHeader.java</File>
+    <File>RIVResultHeader.java</File>
+  </Files>
+  <Libraries>
+    <File>ksoap2-android-assembly-3.6.1-jar-with-dependencies.jar</File>
+  </Libraries>
+</EasyWSDL>
