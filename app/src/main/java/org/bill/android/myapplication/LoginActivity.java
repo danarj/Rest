@@ -3,25 +3,22 @@ package org.bill.android.myapplication;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,12 +30,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import org.bill.android.myapplication.membershipService.LPBAuthenticateUserRequest;
-import org.bill.android.myapplication.membershipService.LPBAuthenticateUserResult;
-import org.bill.android.myapplication.membershipService.LPBBasicHttpBinding_IMembershipService;
-import org.bill.android.myapplication.membershipService.LPBOperationResult;
-import org.bill.android.myapplication.membershipService.LPBRequestHeader;
+import org.bill.android.myapplication.membershipService.RNLAuthenticateUserRequest;
+import org.bill.android.myapplication.membershipService.RNLAuthenticateUserResult;
+import org.bill.android.myapplication.membershipService.RNLBasicHttpBinding_IMembershipService;
+import org.bill.android.myapplication.membershipService.RNLRequestHeader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +46,6 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>
 {
-
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -78,8 +72,37 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        SharedPreferences sharedPreference = getSharedPreferences("sharedPr", MODE_PRIVATE);
+        String token = sharedPreference.getString("token", null);
+        if (token != null)
+        {
+            Toast.makeText(this, "User Token: " + token, Toast.LENGTH_LONG).show();
+
+            mAuthTask = new UserLoginTask(token);
+            try
+            {
+                RNLAuthenticateUserResult serviceResult = mAuthTask.execute().get();
+                if (serviceResult.ResultHeader.IsSuccess)
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences(sharedPref, MODE_PRIVATE).edit();
+                    editor.putString("token", serviceResult.Token);
+                    editor.apply();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                }
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+            catch (ExecutionException e)
+            {
+                e.printStackTrace();
+            }
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.editTextUserName);
         populateAutoComplete();
@@ -227,7 +250,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
 
-            LPBAuthenticateUserResult serviceResult = null;
+            RNLAuthenticateUserResult serviceResult = null;
             try
             {
                 serviceResult = mAuthTask.execute().get();
@@ -372,29 +395,45 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, LPBAuthenticateUserResult>
+    public class UserLoginTask extends AsyncTask<Void, Void, RNLAuthenticateUserResult>
     {
 
         private final String mEmail;
         private final String mPassword;
+        private final String token;
 
         UserLoginTask(String email, String password)
         {
             mEmail = email;
             mPassword = password;
+            token = null;
+        }
+
+        UserLoginTask(String token)
+        {
+            mEmail = null;
+            mPassword = null;
+            this.token = token;
         }
 
         @Override
-        protected LPBAuthenticateUserResult doInBackground(Void... params)
+        protected RNLAuthenticateUserResult doInBackground(Void... params)
         {
-            LPBAuthenticateUserResult serviceResult = null;
+            RNLAuthenticateUserResult serviceResult = null;
             try
             {
-                LPBBasicHttpBinding_IMembershipService membershipService = new LPBBasicHttpBinding_IMembershipService();
-                LPBAuthenticateUserRequest request = new LPBAuthenticateUserRequest();
-                LPBRequestHeader authentication = new LPBRequestHeader();
-                authentication.Username = mEmail;
-                authentication.Password = mPassword;
+                RNLBasicHttpBinding_IMembershipService membershipService = new RNLBasicHttpBinding_IMembershipService();
+                RNLAuthenticateUserRequest request = new RNLAuthenticateUserRequest();
+                RNLRequestHeader authentication = new RNLRequestHeader();
+                if (!TextUtils.isEmpty(mEmail) && !TextUtils.isEmpty(mPassword))
+                {
+                    authentication.Username = mEmail;
+                    authentication.Password = mPassword;
+                }
+                else if (!TextUtils.isEmpty(token))
+                {
+                    authentication.Token = token;
+                }
                 request.Authentication = authentication;
                 serviceResult = membershipService.AuthenticateUser(request);
 
@@ -409,7 +448,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         @Override
-        protected void onPostExecute(final LPBAuthenticateUserResult authenticateUserResult)
+        protected void onPostExecute(final RNLAuthenticateUserResult authenticateUserResult)
         {
             mAuthTask = null;
             showProgress(false);

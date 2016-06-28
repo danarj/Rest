@@ -24,7 +24,7 @@
     </p>
     <pre>
     <code class="java">
-LPBBasicHttpBinding_IMembershipService service = new LPBBasicHttpBinding_IMembershipService();
+RNLBasicHttpBinding_IMembershipService service = new RNLBasicHttpBinding_IMembershipService();
 service.httpHeaders.add(new HeaderProperty("Authorization", "Basic " +
         org.kobjects.base64.Base64.encode("user:password".getBytes())));
 service.AuthenticateUser();
@@ -108,7 +108,7 @@ for (PropertyInfo info : profileInfo.any)
 
     <pre>
     <code class="java">
-public class MyService extends LPBBasicHttpBinding_IMembershipService
+public class MyService extends RNLBasicHttpBinding_IMembershipService
 {
     @Override
     protected Transport createTransport() {
@@ -147,7 +147,7 @@ public class MyService extends LPBBasicHttpBinding_IMembershipService
 }
         </code>
 </pre>
-    <p>Now to connect to your web service you should use MyService class instead of LPBBasicHttpBinding_IMembershipService.</p>
+    <p>Now to connect to your web service you should use MyService class instead of RNLBasicHttpBinding_IMembershipService.</p>
 
 
 </body>

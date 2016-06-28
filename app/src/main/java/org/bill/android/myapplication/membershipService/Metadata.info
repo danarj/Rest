@@ -4,7 +4,7 @@
     <Version>4.5.7.1</Version>
     <AccountType>Basic</AccountType>
     <LibrariesFolder>libs/easywsdl</LibrariesFolder>
-    <MainClass>LPBBasicHttpBinding_IMembershipService</MainClass>
+    <MainClass>RNLBasicHttpBinding_IMembershipService</MainClass>
   </Info>
   <Settings>
     <Url>http://192.168.112.139/ResturantService/MembershipService.svc?wsdl</Url>
@@ -22,24 +22,23 @@
     <GenerateHtmlDocumentation>true</GenerateHtmlDocumentation>
   </Settings>
   <Files>
-    <File>docs/Html/LPBBasicHttpBinding_IMembershipService.html</File>
-    <File>docs/Html/LPBBasicHttpBinding_IMembershipService_methods.html</File>
     <File>docs/Html/MTOMTransfer.html</File>
+    <File>docs/Html/RNLBasicHttpBinding_IMembershipService.html</File>
+    <File>docs/Html/RNLBasicHttpBinding_IMembershipService_methods.html</File>
     <File>docs/Html/Tips.html</File>
     <File>docs/Index.html</File>
     <File>docs/Styles/Blueprint_Styles/Style.css</File>
-    <File>LPBAuthenticateUserRequest.java</File>
-    <File>LPBAuthenticateUserResult.java</File>
-    <File>LPBBasicHttpBinding_IMembershipService.java</File>
-    <File>LPBExtendedSoapSerializationEnvelope.java</File>
-    <File>LPBFunctions.java</File>
-    <File>LPBHelper.java</File>
-    <File>LPBIServiceEvents.java</File>
-    <File>LPBMarshalGuid.java</File>
-    <File>LPBOperationResult.java</File>
-    <File>LPBRequestHeader.java</File>
-    <File>LPBResultHeader.java</File>
-    <File>Metadata.info</File>
+    <File>RNLAuthenticateUserRequest.java</File>
+    <File>RNLAuthenticateUserResult.java</File>
+    <File>RNLBasicHttpBinding_IMembershipService.java</File>
+    <File>RNLExtendedSoapSerializationEnvelope.java</File>
+    <File>RNLFunctions.java</File>
+    <File>RNLHelper.java</File>
+    <File>RNLIServiceEvents.java</File>
+    <File>RNLMarshalGuid.java</File>
+    <File>RNLOperationResult.java</File>
+    <File>RNLRequestHeader.java</File>
+    <File>RNLResultHeader.java</File>
   </Files>
   <Libraries>
     <File>ksoap2-android-assembly-3.6.1-jar-with-dependencies.jar</File>
