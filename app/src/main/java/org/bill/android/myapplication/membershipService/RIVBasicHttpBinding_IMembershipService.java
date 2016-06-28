@@ -29,7 +29,7 @@ public class RIVBasicHttpBinding_IMembershipService {
         java.lang.Object ProcessResult(RIVExtendedSoapSerializationEnvelope __envelope, java.lang.Object result) throws java.lang.Exception;
     }
 
-    String url = "http://90.1.1.103/ResturantService/MembershipService.svc";
+    String url = "http://192.168.112.139/ResturantService/MembershipService.svc";
 
     int timeOut = 60000;
     public List<HeaderProperty> httpHeaders;
