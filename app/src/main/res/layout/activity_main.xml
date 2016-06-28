@@ -6,40 +6,4 @@
     android2:orientation="vertical">
 
 
-    <TextView
-        android2:layout_width="match_parent"
-        android2:layout_height="wrap_content"
-        android2:textSize="20dp"
-        android2:text="Username"/>
-
-    <EditText
-        android2:id="@+id/editTextUserName"
-        android2:layout_width="match_parent"
-        android2:layout_height="wrap_content"
-        />
-
-    <TextView
-        android2:layout_width="match_parent"
-        android2:layout_height="wrap_content"
-        android2:textSize="20dp"
-        android2:text="Password"/>
-
-    <EditText
-        android2:id="@+id/editTextPassword"
-        android2:layout_width="match_parent"
-        android2:inputType="textPassword"
-        android2:layout_height="wrap_content"/>
-
-    <Button
-        android2:id="@+id/btnLogin"
-        android2:layout_width="match_parent"
-        android2:layout_height="wrap_content"
-        android2:text="@string/btn_login"
-        />
-
-    <TextView
-        android2:id="@+id/txtViewResult"
-        android2:textSize="20dp"
-        android2:layout_width="match_parent"
-        android2:layout_height="wrap_content"/>
 </LinearLayout>
