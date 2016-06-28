@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
                 new Login().execute(editTextUserName.getText().toString(), editTextPassword.getText().toString());
             }
         });
-//        AsyncTaskRunner asyncTaskRunner = new AsyncTaskRunner();
-//        asyncTaskRunner.execute();
     }
 
     private class Login extends AsyncTask<String, String, String> {
