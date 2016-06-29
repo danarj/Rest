@@ -30,10 +30,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.bill.android.myapplication.membershipService.RNLAuthenticateUserRequest;
-import org.bill.android.myapplication.membershipService.RNLAuthenticateUserResult;
-import org.bill.android.myapplication.membershipService.RNLBasicHttpBinding_IMembershipService;
-import org.bill.android.myapplication.membershipService.RNLRequestHeader;
+import org.bill.android.myapplication.membershipService.CGTAuthenticateUserRequest;
+import org.bill.android.myapplication.membershipService.CGTAuthenticateUserResult;
+import org.bill.android.myapplication.membershipService.CGTBasicHttpBinding_IMembershipService;
+import org.bill.android.myapplication.membershipService.CGTRequestHeader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = new UserLoginTask(token);
             try
             {
-                RNLAuthenticateUserResult serviceResult = mAuthTask.execute().get();
+                CGTAuthenticateUserResult serviceResult = mAuthTask.execute().get();
                 if (serviceResult.ResultHeader.IsSuccess)
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(sharedPref, MODE_PRIVATE).edit();
@@ -91,11 +91,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     startActivity(intent);
                 }
             }
-            catch (InterruptedException e)
-            {
-                e.printStackTrace();
-            }
-            catch (ExecutionException e)
+            catch (InterruptedException | ExecutionException e)
             {
                 e.printStackTrace();
             }
@@ -250,7 +246,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
 
-            RNLAuthenticateUserResult serviceResult = null;
+            CGTAuthenticateUserResult serviceResult = null;
             try
             {
                 serviceResult = mAuthTask.execute().get();
@@ -395,7 +391,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, RNLAuthenticateUserResult>
+    public class UserLoginTask extends AsyncTask<Void, Void, CGTAuthenticateUserResult>
     {
 
         private final String mEmail;
@@ -417,14 +413,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         @Override
-        protected RNLAuthenticateUserResult doInBackground(Void... params)
+        protected CGTAuthenticateUserResult doInBackground(Void... params)
         {
-            RNLAuthenticateUserResult serviceResult = null;
+            CGTAuthenticateUserResult serviceResult = null;
             try
             {
-                RNLBasicHttpBinding_IMembershipService membershipService = new RNLBasicHttpBinding_IMembershipService();
-                RNLAuthenticateUserRequest request = new RNLAuthenticateUserRequest();
-                RNLRequestHeader authentication = new RNLRequestHeader();
+                CGTBasicHttpBinding_IMembershipService membershipService = new CGTBasicHttpBinding_IMembershipService();
+                CGTAuthenticateUserRequest request = new CGTAuthenticateUserRequest();
+                CGTRequestHeader authentication = new CGTRequestHeader();
                 if (!TextUtils.isEmpty(mEmail) && !TextUtils.isEmpty(mPassword))
                 {
                     authentication.Username = mEmail;
@@ -448,7 +444,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         @Override
-        protected void onPostExecute(final RNLAuthenticateUserResult authenticateUserResult)
+        protected void onPostExecute(final CGTAuthenticateUserResult authenticateUserResult)
         {
             mAuthTask = null;
             showProgress(false);

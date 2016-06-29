@@ -4,7 +4,7 @@
     <Version>4.5.7.1</Version>
     <AccountType>Basic</AccountType>
     <LibrariesFolder>libs/easywsdl</LibrariesFolder>
-    <MainClass>RNLBasicHttpBinding_IMembershipService</MainClass>
+    <MainClass>CGTBasicHttpBinding_IMembershipService</MainClass>
   </Info>
   <Settings>
     <Url>http://192.168.112.139/ResturantService/MembershipService.svc?wsdl</Url>
@@ -22,23 +22,24 @@
     <GenerateHtmlDocumentation>true</GenerateHtmlDocumentation>
   </Settings>
   <Files>
+    <File>CGTAuthenticateUserRequest.java</File>
+    <File>CGTAuthenticateUserResult.java</File>
+    <File>CGTBasicHttpBinding_IMembershipService.java</File>
+    <File>CGTExtendedSoapSerializationEnvelope.java</File>
+    <File>CGTFunctions.java</File>
+    <File>CGTHelper.java</File>
+    <File>CGTIServiceEvents.java</File>
+    <File>CGTMarshalGuid.java</File>
+    <File>CGTOperationResult.java</File>
+    <File>CGTRequestHeader.java</File>
+    <File>CGTResultHeader.java</File>
+    <File>docs/Html/CGTBasicHttpBinding_IMembershipService.html</File>
+    <File>docs/Html/CGTBasicHttpBinding_IMembershipService_methods.html</File>
     <File>docs/Html/MTOMTransfer.html</File>
-    <File>docs/Html/RNLBasicHttpBinding_IMembershipService.html</File>
-    <File>docs/Html/RNLBasicHttpBinding_IMembershipService_methods.html</File>
     <File>docs/Html/Tips.html</File>
     <File>docs/Index.html</File>
     <File>docs/Styles/Blueprint_Styles/Style.css</File>
-    <File>RNLAuthenticateUserRequest.java</File>
-    <File>RNLAuthenticateUserResult.java</File>
-    <File>RNLBasicHttpBinding_IMembershipService.java</File>
-    <File>RNLExtendedSoapSerializationEnvelope.java</File>
-    <File>RNLFunctions.java</File>
-    <File>RNLHelper.java</File>
-    <File>RNLIServiceEvents.java</File>
-    <File>RNLMarshalGuid.java</File>
-    <File>RNLOperationResult.java</File>
-    <File>RNLRequestHeader.java</File>
-    <File>RNLResultHeader.java</File>
+    <File>Metadata.info</File>
   </Files>
   <Libraries>
     <File>ksoap2-android-assembly-3.6.1-jar-with-dependencies.jar</File>
