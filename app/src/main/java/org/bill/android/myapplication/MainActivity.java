@@ -24,6 +24,6 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences sharedPreference = getSharedPreferences("sharedPr", MODE_PRIVATE);
         String token = sharedPreference.getString("token", null);
         Toast.makeText(this, "User Token: "+token, Toast.LENGTH_SHORT).show();
-        //test comment
+
     }
 }
