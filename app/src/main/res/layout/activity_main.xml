@@ -5,5 +5,17 @@
     android2:layout_height="match_parent"
     android2:orientation="vertical">
 
+    <TextView
+        android2:layout_width="match_parent"
+        android2:layout_height="wrap_content"
+        android2:text="Tables"
+        android2:textSize="25dp"
+        />
 
+    <Spinner
+        android2:id="@+id/spinnerTables"
+        android2:layout_width="match_parent"
+        android2:layout_height="wrap_content"
+        android2:background="@android:drawable/btn_dropdown"
+        android2:spinnerMode="dropdown"/>
 </LinearLayout>

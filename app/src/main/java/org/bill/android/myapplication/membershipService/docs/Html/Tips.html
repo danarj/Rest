@@ -24,7 +24,8 @@
     </p>
     <pre>
     <code class="java">
-CGTBasicHttpBinding_IMembershipService service = new CGTBasicHttpBinding_IMembershipService();
+        SABBasicHttpBinding_IMembershipService service = new
+        SABBasicHttpBinding_IMembershipService();
 service.httpHeaders.add(new HeaderProperty("Authorization", "Basic " +
         org.kobjects.base64.Base64.encode("user:password".getBytes())));
 service.AuthenticateUser();
@@ -108,7 +109,7 @@ for (PropertyInfo info : profileInfo.any)
 
     <pre>
     <code class="java">
-public class MyService extends CGTBasicHttpBinding_IMembershipService
+        public class MyService extends SABBasicHttpBinding_IMembershipService
 {
     @Override
     protected Transport createTransport() {
@@ -147,7 +148,8 @@ public class MyService extends CGTBasicHttpBinding_IMembershipService
 }
         </code>
 </pre>
-    <p>Now to connect to your web service you should use MyService class instead of CGTBasicHttpBinding_IMembershipService.</p>
+    <p>Now to connect to your web service you should use MyService class instead of
+        SABBasicHttpBinding_IMembershipService.</p>
 
 
 </body>
